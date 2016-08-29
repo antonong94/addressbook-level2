@@ -14,6 +14,10 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -26,6 +30,11 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address;
+        String[] splitAddress = address.split(",");
+        this.block = new Block(splitAddress[0]);
+        this.street = new Street(splitAddress[1]);
+        this.unit = new Unit(splitAddress[2]);
+        this.postalCode = new PostalCode(splitAddress[3]);
     }
 
     /**
